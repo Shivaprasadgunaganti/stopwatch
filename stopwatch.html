@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #parent{
+            /* border: 1px solid ; */
+            display: grid;
+            row-gap: 30px;
+            grid-template-columns: repeat(auto,auto);
+            justify-items: center;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="parent">
+    <div id="maindiv">
+        <div id="childiv1">
+            <h2 id="hr">00:</h2>
+        </div>
+        <div id="childiv2">
+            <h2 id="min">00:</h2>
+        </div>
+        <div id="childiv3">
+            <h2 id="sec">00</h2>
+        </div>
+        
+    </div>
+    <div>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+    </div>
+    </div>
+    
+    <script>
+       
+         let mainDiv=document.getElementById("maindiv")
+              mainDiv.style.backgroundColor="lightblue"
+              mainDiv.style.width="200px"
+              mainDiv.style.height="200px"
+              mainDiv.style.display='flex'
+              mainDiv.style.alignItems="center"
+              mainDiv.style.justifyContent="center"
+              mainDiv.style.borderRadius="100px"
+        let button=document.getElementById("button") 
+
+
+        let chilDiv1=document.getElementById("childiv1")
+
+        let chilDiv2=document.getElementById("childiv2")
+       
+
+        let chilDiv3=document.getElementById("childiv3")
+
+        let seconds=document.getElementById("sec")
+            seconds.setAttribute("style","font-Size:50px;color:red")
+
+        let minutes=document.getElementById("min")
+            minutes.setAttribute("style","font-Size:50px;color:red")
+
+        let hours=document.getElementById("hr")
+            hours.setAttribute("style","font-Size:50px;color:red")
+
+              let btn1=document.getElementById("start")
+              btn1.style.height='40px'
+              btn1.style.width='60px'
+              btn1.style.backgroundColor='lightgreen'
+              btn1.style.borderRadius='50px'
+
+              let btn2=document.getElementById("stop")
+              btn2.style.height='40px'
+              btn2.style.width='60px'
+              btn2.style.borderRadius='50px'
+              btn2.style.backgroundColor="red"
+              let btn3=document.getElementById("reset")
+              btn3.style.height='40px'
+              btn3.style.width='60px'
+              btn3.style.borderRadius='50px'
+              btn3.style.backgroundColor='lightblue'
+        
+        i=0
+        j=0
+        k=0
+
+        btn1.addEventListener("click",()=>{
+            start = setInterval(() => {
+               if(i==60){              
+                  i=0
+                  j++
+                  minutes.innerHTML=String(j).padStart(2,'0')+":"
+                    
+                  if(j==60){
+                    j==0
+                    k++
+                    hours.innerHTML=String(k).padStart(2,'0')+':'
+                    
+                  }
+               }
+            
+               seconds.innerHTML=String(i).padStart(2,'0')
+                  i++
+            
+         },1000);
+    
+    })
+
+        btn2.addEventListener("click",()=>{
+            clearTimeout(start)
+        })
+
+        btn3.addEventListener("click",()=>{
+            clearTimeout(start)
+            seconds.innerHTML="00"
+            minutes.innerHTML="00:"
+            hours.innerHTML="00:"
+            i=0
+            j=0
+            k=0
+    });
+
+</script>
+</body>
+</html>
